@@ -1,8 +1,30 @@
 # Nodejs API REST
 
-se realizo una API REST que permite manejar librerías y los libros asociados a cada una de las librerías.
+Se realizo una API REST que permite manejar librerías y los libros asociados a cada una de las librerías.
 Se utilizaron las siguientes dependencias: Node.Js Express, Sequelize , Passport ,Passport-jwt, Jsonwebtoken, mysql2.
 
+---
+## DB mysql
+
+la base de datos de compone de tres tablas, user, libraries, books. en el repositorio se encuentra el archivo de instruciones para creacion de db y tablas.
+
+```bash
+ src/db/create-tables.sql
+```
+tambien se crearon dos archivos con instrucion para cargar libros y librerias. 
+```bash
+src/db/cargarlibros.sql
+src/db/cargarlibrerias.sql
+```
+--- 
+
+## Run Api Rest
+
+para correr la API REST.
+
+```bash
+  npm start
+```
 ## API Reference
 
 #### POST  Create user admin
@@ -23,7 +45,13 @@ Se utilizaron las siguientes dependencias: Node.Js Express, Sequelize , Passport
 
 ```json
 {
-    json
+    "admin": {
+        "id": 1,
+        "name": "admin",
+        "password": "admin",
+        "updatedAt": "2023-06-06T20:02:37.517Z",
+        "createdAt": "2023-06-06T20:02:37.517Z"
+    }
 }
 ```
 
@@ -776,13 +804,23 @@ body
 
 | Parameter | Type         | Description                                                                                             |
 | :-------- | :----------- | :------------------------------------------------------------------------------------------------------ |
-| `body`  | `raw/json` | {<br />"name": "libreria privada",<br />"location": "calle privada",<br />"telefono": "25252563"<br />} |
+| `body`  | `raw/json` | ```{ "isbn": 234567490, "titulo": "Orgullo y prejuicio2", "autor": "Jane Austen", "year": "1814", "library": 3 }``` |
 
 > Responde:  devuelve un json con los datos de libro modificado.
 
 
 ```json
-{}
+{
+    "id": 2,
+    "isbn": 234567490,
+    "titulo": "Orgullo y prejuicio2",
+    "autor": "Jane Austen",
+    "year": "1814",
+    "library": 3,
+    "createdAt": "2023-06-05",
+    "updatedAt": "2023-06-06T20:05:39.095Z",
+    "deletelogical": false
+}
   
 
 ```
@@ -801,10 +839,11 @@ DELETE localhost:5001/Book//borrarLibro/3
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
-> Responde:  devuelve un json con los datos de la libreria eliminada( se elimina logicamente).
+> Responde:  devuelve un json con el siguiente mensaje.( se elimina logicamente).
 
 ```json
 {
+    "message": "Book deleted successfully"
 }
   
 
