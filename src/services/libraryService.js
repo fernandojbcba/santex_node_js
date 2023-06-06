@@ -1,7 +1,7 @@
 const  Library  = require('../models/library');
 const Book  = require('../models/book')
 
-
+//crear una nueva libreria
 const createLibrary = async (name, location, telefono) => {
   try {
     const library = await Library.create({
@@ -14,7 +14,7 @@ const createLibrary = async (name, location, telefono) => {
     throw error;
   }
 };
-
+//actualizar una libreria existente por su ID
 const getLibraryById = async (id) => {
   try {
     const library = await Library.findOne({
@@ -27,7 +27,7 @@ const getLibraryById = async (id) => {
     throw error;
   }
 };
-
+//obtener todas las librerias existentes
 const getAllLibraries = async () => {
   try {
     const libraries = await Library.findAll({
@@ -38,7 +38,7 @@ const getAllLibraries = async () => {
     throw error;
   }
 };
-
+//actualizar una libreria existente por su ID
 const updateLibrary = async (id, name, location, telefono) => {
   try {
     const library = await Library.findOne({ where: { id } });
@@ -54,7 +54,7 @@ const updateLibrary = async (id, name, location, telefono) => {
     throw error;
   }
 };
-
+// eliminar una libreria por su ID (eliminación lógica)
 const deleteLibrary = async (id) => {
   const library = await Library.findByPk(id);
   if (library) {
@@ -63,7 +63,7 @@ const deleteLibrary = async (id) => {
   return null;
 }
 ;
-
+//agregar un libro a una libreria existente
 const addBookToLibrary = async (libraryId, bookData) => {
   try {
     const library = await Library.findOne({ where: { id: libraryId } });

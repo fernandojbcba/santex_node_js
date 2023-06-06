@@ -1,6 +1,6 @@
 const Book = require('../models/book');
 
-// Create a new book
+// crea un nuevo libro
 const createBook = async (bookData) => {
   try {
     const book = await Book.create(bookData);
@@ -10,7 +10,7 @@ const createBook = async (bookData) => {
   }
 };
 
-// Get a book by ID
+// obtiene libro por id
 const getBookById = async (id) => {
   try {
     const book = await Book.findOne({
@@ -25,7 +25,7 @@ const getBookById = async (id) => {
   }
 };
 
-// Get all books
+// obtiene todos los libros
 const getAllBooks = async () => {
   try {
     const book = await Book.findAll({
@@ -39,7 +39,7 @@ const getAllBooks = async () => {
   }
 };
 
-// Update a book by ID
+// modifica libro por id 
 const updateBookById = async (id, bookData) => {
   try {
     const book = await Book.findOne({
@@ -58,7 +58,7 @@ const updateBookById = async (id, bookData) => {
   }
 };
 
-// Delete a book by ID (logical deletion)
+// borrar de forma logica un libro
 const deleteBookById = async (id) => {
   try {
     const book = await Book.findOne({
@@ -68,7 +68,7 @@ const deleteBookById = async (id) => {
       },
     });
     if (book) {
-      book.deletelogical = true; // Set the "deletelogical" flag to true
+      book.deletelogical = true; // seteo deletelogical a verdadero para saber que fue borrado
       await book.save();
       return true;
     }

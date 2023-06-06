@@ -1,20 +1,43 @@
 # Nodejs API REST
 
-se realizo una API REST que permite manejar librerías y los libros asociados a cada una de las librerías. 
+se realizo una API REST que permite manejar librerías y los libros asociados a cada una de las librerías.
 Se utilizaron las siguientes dependencias: Node.Js Express, Sequelize , Passport ,Passport-jwt, Jsonwebtoken, mysql2.
-
 
 ## API Reference
 
-#### Get all items
+#### POST  Create user admin
+
+```http
+  POST localhost:5001/user/newAdmin
+```
+
+> Responde: si el ya existe en db User.
+
+```json
+{
+    "message": "admin ya creado"
+}
+```
+
+> Responde: si el user no existe devuelve un  json con los datos creados.
+
+```json
+{
+    json
+}
+```
+
+---
+
+#### POST login
 
 ```http
   POST localhost:5001/user/login
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `body` | `raw/json` | `body:{ "name": "admin","password": "admin"}`|
+| Parameter | Type         | Description                                     |
+| :-------- | :----------- | :---------------------------------------------- |
+| `body`  | `raw/json` | `body:{ "name": "admin","password": "admin"}` |
 
 > Responde: si el user y password son correctos devuelve un json con el token de seguridad.
 
@@ -24,37 +47,39 @@ Se utilizaron las siguientes dependencias: Node.Js Express, Sequelize , Passport
         "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg2MDE5MTEyfQ.BXs_ZW_2FshylFhZ2GhXqRnAr8v4wNvR-E9z_FE9Nxk"
     }
 }
-``` 
+```
+
 > Responde: si el user y password son incorrectos devuelve un json con el siguiente mensaje, con el status 401, Unauthorized.
 
 ```json
 {
     "message": "Email y/o password incorrectos"
 }
-``` 
+```
 
+---
 
-## para comenzar correr api con ... ''' npm start '''
-## postman
-### para login
+#### POST create library
 
+```http
+  POST localhost:5001/Library/createLibrary
+```
 
-### para agragar libreria.
+> Headers (enviamos el token para autenticarnos)
 
-post /// localhost:5001/Library/createLibrary
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
-header: 
-key:authorization 
-value:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4
+body
 
-body: raw/json
-{
-        "name": "libreria",
-        "location": "calle siempre viva",
-        "telefono": "0303456"
-}
+| Parameter | Type         |                                 Description                                 |
+| :-------- | :----------- | :-------------------------------------------------------------------------: |
+| `body`  | `raw/json` | {"name": "libreria","location": "calle siempre viva","telefono": "0303456"} |
 
-responde:
+> Responde:  devuelve un json con los datos de la libreria creada.
+
+```json
 {
     {
     "id": 11,
@@ -63,17 +88,22 @@ responde:
     "telefono": "0303456",
     "updatedAt": "2023-06-06T02:53:19.303Z",
     "createdAt": "2023-06-06T02:53:19.303Z"
-}
-}
+    }
+}  
 
-### para obtener una lubreria por id.
-get ////localhost:5001/Library/obtener-por-id/:id
+```
 
-si la libreria se borro logicamente se obtiene 
-{
-    "error": "Library not found"
-} 
-si la libreria no se borro logicamente se obtiene:
+---
+
+#### GET obtener librerias por id
+
+```http
+  GET localhost:5001/Library/obtener-por-id/:id
+```
+
+> Responde: un json con la libreria pedida y los libros asociados a esa libreria..
+
+```json
 {
     "id": 3,
     "name": "Librería Cúspide",
@@ -151,20 +181,29 @@ si la libreria no se borro logicamente se obtiene:
         }
     ]
 }
+   
+```
 
-# santex_node_js
+> Responde: si la libreria no existe devuelve:
 
-
-
-localhost:5001/user/newAdmin
-
+```json
 {
-    "message": "admin ya creado"
+    "error": "Library not found"
 }
+```
 
+---
 
-todas las librerias
-[
+#### GET obtener todas las  librerias
+
+```http
+  GET localhost:5001/Library/obtener-por-id/:id
+```
+
+> Responde: un json con todas las librerias.
+
+```json
+{ [
     {
         "id": 1,
         "name": "El Ateneo Grand Splendid",
@@ -265,38 +304,78 @@ todas las librerias
         "deletelogical": false
     }
 ]
+   
+```
 
+> Responde: si la libreria no existe devuelve:
 
-crear libro en libreria
-localhost:5001/Library/createBookinlibrary/2
-body
+```json
 {
-"isbn": "212342",
-"titulo": "Maestros3",
-"autor": "paul",
-"year":"1935"
+    "error": "Libraries not found"
 }
-devuelve
+```
+
+---
+
+#### POST create libro en libreria por id
+
+```http
+  POST localhost:5001/Library/createBookinlibrary/2
+```
+
+> Headers (enviamos el token para autenticarnos)
+
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+
+body
+
+| Parameter | Type         | Description                                                                                          |
+| :-------- | :----------- | :--------------------------------------------------------------------------------------------------- |
+| `body`  | `raw/json` | {<br />"isbn": "212342",<br />"titulo": "Maestros3",<br />"autor": "paul",<br />"year":"1935"<br />} |
+
+> Responde:  devuelve un json con los datos de la libreria creada.
+
+```json
 {
-    "deletelogical": false,
+  
     "id": 21,
     "isbn": "212342",
     "titulo": "Maestros3",
     "autor": "paul",
     "year": "1935",
     "library": "2",
+    "deletelogical": false,
     "updatedAt": "2023-06-06T02:57:58.773Z",
     "createdAt": "2023-06-06T02:57:58.773Z"
 }
 
-localhost:5001/Library/modificar-libreria/2
+```
 
-{
-        "name": "libreria privada",
-        "location": "calle privada",
-        "telefono": "25252563"
-}
+---
 
+#### PUT modificar libreria
+
+```http
+  PUT localhost:5001/Library/modificar-libreria/2
+```
+
+> Headers (enviamos el token para autenticarnos)
+
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+
+> body
+
+| Parameter | Type         | Description                                                                                             |
+| :-------- | :----------- | :------------------------------------------------------------------------------------------------------ |
+| `body`  | `raw/json` | {<br />"name": "libreria privada",<br />"location": "calle privada",<br />"telefono": "25252563"<br />} |
+
+> Responde:  devuelve un json con los datos de la libreria modificada.
+
+```json
 {
     "id": 2,
     "name": "libreria privada",
@@ -307,9 +386,25 @@ localhost:5001/Library/modificar-libreria/2
     "deletelogical": false
 }
 
+```
 
+---
 
-localhost:5001/Library/borrar-libreria/3
+#### DELETE borrar libreria
+
+```http
+  DELETE localhost:5001/Library/borrar-libreria/3
+```
+
+> Headers (enviamos el token para autenticarnos)
+
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+
+> Responde:  devuelve un json con los datos de la libreria eliminada( se elimina logicamente).
+
+```json
 {
     "id": 3,
     "name": "Librería Cúspide",
@@ -320,31 +415,61 @@ localhost:5001/Library/borrar-libreria/3
     "deletelogical": true
 }
 
+```
 
-localhost:5001/Book/crearLibro
+---
 
+---
 
+---
+
+#### POST crear libro
+
+```http
+  POST localhost:5001/Book/crearLibro
+```
+
+> Headers (enviamos el token para autenticarnos)
+
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+
+body
+
+| Parameter | Type         | Description                                                                                                              |
+| :-------- | :----------- | :----------------------------------------------------------------------------------------------------------------------- |
+| `body`  | `raw/json` | {<br />"isbn": "22263",<br />"titulo": "Maestros4",<br />"autor": "paul",<br />"year":"1935",<br />"library": "2"<br />} |
+
+> Responde:  devuelve un json con los datos del libro creado.
+
+```json
 {
-"isbn": "22263",
-"titulo": "Maestros4",
-"autor": "paul",
-"year":"1935",
-"library": "2"
-}
-{
-    "deletelogical": false,
+  
     "id": 22,
     "isbn": "22263",
     "titulo": "Maestros4",
     "autor": "paul",
     "year": "1935",
     "library": "2",
+    "deletelogical": false,
     "updatedAt": "2023-06-06T03:01:18.679Z",
     "createdAt": "2023-06-06T03:01:18.679Z"
 }
 
-localhost:5001/Book/obtenerlibroId/3
+```
 
+---
+
+#### GET obtener libro por id
+
+```http
+  GET localhost:5001/Book/obtenerlibroId/3
+```
+
+> Responde: un json con el libros .
+
+```json
 {
     "id": 3,
     "isbn": 345678901,
@@ -356,7 +481,28 @@ localhost:5001/Book/obtenerlibroId/3
     "updatedAt": "2023-06-05",
     "deletelogical": false
 }
-localhost:5001/Book/obtenerTodosLibros
+   
+```
+
+> Responde: si la libreria no existe devuelve:
+
+```json
+{
+    "error": "Book not found"
+}
+```
+
+---
+
+#### GET obtener todos los libros
+
+```http
+  GET localhost:5001/Book/obtenerTodosLibros
+```
+
+> Responde: un json con todos los libros.
+
+```json
 [
     {
         "id": 1,
@@ -601,3 +747,69 @@ localhost:5001/Book/obtenerTodosLibros
         "deletelogical": false
     }
 ]
+   
+```
+
+> Responde: si la libreria no existe devuelve:
+
+```json
+{
+    "error": "Libraries not found"
+}
+```
+
+---
+
+#### PUT modificar libro
+
+```http
+  PUT localhost:5001/Book//modificarLibroID/
+```
+
+> Headers (enviamos el token para autenticarnos)
+
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+
+> body
+
+| Parameter | Type         | Description                                                                                             |
+| :-------- | :----------- | :------------------------------------------------------------------------------------------------------ |
+| `body`  | `raw/json` | {<br />"name": "libreria privada",<br />"location": "calle privada",<br />"telefono": "25252563"<br />} |
+
+> Responde:  devuelve un json con los datos de libro modificado.
+
+
+```json
+{}
+  
+
+```
+
+---
+
+#### DELETE borrar libro
+
+```http
+DELETE localhost:5001/Book//borrarLibro/3 
+```
+
+> Headers (enviamos el token para autenticarnos)
+
+| Parameter     | value                                                                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+
+> Responde:  devuelve un json con los datos de la libreria eliminada( se elimina logicamente).
+
+```json
+{
+}
+  
+
+```
+
+---
+
+---

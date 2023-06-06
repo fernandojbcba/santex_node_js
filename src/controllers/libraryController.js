@@ -30,6 +30,9 @@ const getLibrary = async (req, res) => {
 const getAllLibraries = async (req, res) => {
   try {
     const libraries = await libraryService.getAllLibraries();
+    if (!library) {
+      return res.status(404).json({ error: 'Libraries not found' });
+    }
     res.json(libraries);
   } catch (error) {
     console.error(error);
