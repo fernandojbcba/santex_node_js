@@ -97,7 +97,7 @@ para correr la API REST.
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 body
 
@@ -355,7 +355,7 @@ body
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 body
 
@@ -393,7 +393,7 @@ body
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 > body
 
@@ -428,7 +428,7 @@ body
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 > Responde:  devuelve un json con los datos de la libreria eliminada( se elimina logicamente).
 
@@ -461,7 +461,7 @@ body
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 body
 
@@ -798,7 +798,7 @@ body
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 > body
 
@@ -837,7 +837,7 @@ DELETE localhost:5001/Book//borrarLibro/3
 
 | Parameter     | value                                                                                                                                   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| authorization | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
+| authorization | Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImFkbWluIiwiaWF0IjoxNjg1ODA1NTgxfQ.CSZB42KOyWe4OT_qnJ00wM_YDSChq1oo2MC7_s6K3l4 |
 
 > Responde:  devuelve un json con el siguiente mensaje.( se elimina logicamente).
 

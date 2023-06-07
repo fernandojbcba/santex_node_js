@@ -1,12 +1,12 @@
 const passportJwt = require('passport-jwt')
-const { User } = require('../models/user')
+const  User  = require('../models/user')
 
 const ExctractJwt = passportJwt.ExtractJwt
 const StrategyJwt = passportJwt.Strategy
 
 const PassportStrategy = new StrategyJwt({
   jwtFromRequest: ExctractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: 'ClaveUltraSecreta'
+  secretOrKey: 'configsecret'
 }, async (jwtPayload, next) => {
   
   const user = await User.findByPk(jwtPayload.id)

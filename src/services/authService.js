@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const  User  = require('../models/user');
-const { NotAuthorized, NotFound , adminYaCreado} = require('../exceptions/user-exceptions')
+const { NotAuthorized, adminYaCreado} = require('../exceptions/user-exceptions')
 
 
 

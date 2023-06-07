@@ -5,7 +5,9 @@ const { NotAuthorized } = require('../exceptions/user-exceptions')
 const isAuthenticated = (req, res, next) => {
   passport.authenticate('jwt', {session: false}, (err, user, info) => {
     console.log('Validando autenticacion')
-
+    if (!err && user) {
+      console.log("usuario validado ok")
+    }
     if (err || !user) {
       const error = new NotAuthorized("Usuario no autorizado")
 
